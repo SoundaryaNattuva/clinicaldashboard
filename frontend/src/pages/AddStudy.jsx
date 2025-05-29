@@ -46,7 +46,7 @@ function AddStudy(){
         currentEnrollment: Number(formValues.currentEnrollment),
       };
 
-      const response = await fetch("http://localhost:8000/studies", {
+      const response = await fetch("https://9fvzur3xx3.execute-api.us-east-1.amazonaws.com/Stage/studies", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

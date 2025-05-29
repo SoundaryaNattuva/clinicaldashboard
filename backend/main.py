@@ -10,6 +10,7 @@ from io import BytesIO
 from datetime import datetime, date
 from pydantic import BaseModel
 from typing import List, Optional
+from mangum import Mangum
 
 
 app = FastAPI()
@@ -355,3 +356,5 @@ def override_duplicates(studies: List[StudyUpdate], db=Depends(get_db)):
     return {"updated": [study.dict() for study in updated]}
 
 app.include_router(router)
+
+handler = Mangum(app)

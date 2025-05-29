@@ -18,7 +18,7 @@ function FileDrop ({ setUploadedData }) {
     formData.append("file", file[0]); // key must match FastAPI param
   
     try {
-      const response = await fetch("http://localhost:8000/upload-excel/", {
+      const response = await fetch("https://9fvzur3xx3.execute-api.us-east-1.amazonaws.com/Stage/upload-excel/", {
         method: "POST",
         body: formData,
       });
@@ -81,7 +81,7 @@ function FileDrop ({ setUploadedData }) {
   const handleOverrideDuplicates = async () => {
     console.log("Sending to backend:", JSON.stringify(duplicateStudies, null, 2));
     try {
-      const response = await fetch("http://localhost:8000/override-duplicates/", {
+      const response = await fetch("https://9fvzur3xx3.execute-api.us-east-1.amazonaws.com/Stage/override-duplicates/", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(duplicateStudies),
