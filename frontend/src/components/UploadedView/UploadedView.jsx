@@ -6,12 +6,15 @@ function UploadedView({uploadedStudies}) {
   const [localStudies, setLocalStudies] = useState([]);
   const [editingStudy, setEditingStudy] = useState(null);
   const [formValues, setFormValues] = useState({});
+  const [filteringText, setFilteringText] = useState("");
+
   const phaseOptions = [
     { label: "Phase 1", value: "Phase 1" },
     { label: "Phase 2", value: "Phase 2" },
     { label: "Phase 3", value: "Phase 3" },
     { label: "Phase 4", value: "Phase 4" },
   ];
+
   const statusOptions = [
     { label: "Recruiting", value: "Recruiting" },
     { label: "Not yet recruiting", value: "Not yet recruiting" },
@@ -97,6 +100,17 @@ function UploadedView({uploadedStudies}) {
         : '',
     };
   }
+
+  const filteredStudies = localStudies.filter((study) => {
+    const text = filteringText.toLowerCase();
+    return (
+      study.studyId?.toLowerCase().includes(text) ||
+      study.title?.toLowerCase().includes(text) ||
+      study.phase?.toLowerCase().includes(text) ||
+      study.status?.toLowerCase().includes(text)
+    );
+  });
+  
   
   return (
     <>
@@ -191,7 +205,7 @@ function UploadedView({uploadedStudies}) {
           }
         }
       ]}
-      items={localStudies}
+      items={filteredStudies}
       loadingText="Loading resources"
       resizableColumns
       selectedItems={[{ name: "Item 2" }]}
@@ -210,7 +224,8 @@ function UploadedView({uploadedStudies}) {
       filter={
         <TextFilter
           filteringPlaceholder="Find resources"
-          filteringText=""
+          filteringText={filteringText}
+          onChange={({ detail }) => setFilteringText(detail.filteringText)}
           countText="0 matches"
         />
       }
