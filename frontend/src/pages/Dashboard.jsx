@@ -15,7 +15,7 @@ function Dashboard() {
     const [studyData, setStudyData] = useState([]);
     const trialInitRef = useRef(null);
     const enrollmentRef = useRef(null);
-    const piePhaseRef= useRef(null);
+    //const piePhaseRef= useRef(null);
     const studyStatRef= useRef(null);
     
     const downloadChart = async (ref, filename) => {
