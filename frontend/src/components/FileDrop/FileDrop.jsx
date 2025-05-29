@@ -78,10 +78,10 @@ function FileDrop ({ setUploadedData }) {
     });
   };
   
-  const handleOverwriteDuplicates = async () => {
+  const handleOverrideDuplicates = async () => {
     console.log("Sending to backend:", JSON.stringify(duplicateStudies, null, 2));
     try {
-      const response = await fetch("http://localhost:8000/upload-duplicates/", {
+      const response = await fetch("http://localhost:8000/override-duplicates/", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(duplicateStudies),
@@ -171,7 +171,7 @@ function FileDrop ({ setUploadedData }) {
           <SpaceBetween direction="horizontal" size="xs">
             <Button onClick={() => setShowDuplicateModal(false)}>Cancel</Button>
             <Button onClick={handleSkipDuplicates}>Skip Duplicates</Button>
-            <Button variant="primary" onClick={handleOverwriteDuplicates}>
+            <Button variant="primary" onClick={handleOverrideDuplicates}>
               Override Duplicates
             </Button>
           </SpaceBetween>

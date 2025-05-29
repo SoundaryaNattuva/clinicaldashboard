@@ -331,8 +331,8 @@ def get_all_studies(db: Session = Depends(get_db)):
         for s in studies
     ]
 
-@router.put("/upload-duplicates/")
-def overwrite_duplicates(studies: List[StudyUpdate], db=Depends(get_db)):
+@router.put("/override-duplicates/")
+def override_duplicates(studies: List[StudyUpdate], db=Depends(get_db)):
     updated = []
 
     for incoming in studies:

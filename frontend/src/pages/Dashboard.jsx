@@ -76,7 +76,7 @@ function Dashboard() {
         </Container>
       </div>
 
-      <div ref={piePhaseRef}>
+      {/* <div ref={piePhaseRef}>
         <Container header={<Header variant="h3" description="Shows the number of studies grouped by trial phase and recruitment status">
           Recruitment Status Across Trial Phases 
           <span style={{ marginLeft: "8px" }}>
@@ -85,7 +85,7 @@ function Dashboard() {
           </Header>}>
           <PieChartPhase allStudies={studyData} />
         </Container>
-      </div>
+      </div> */}
 
       <div ref={studyStatRef}>
         <Container header={<Header variant="h3" description="Distribution of studies across different statuses">Study Status
