@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { ColumnLayout, SpaceBetween, Header, Box} from "@cloudscape-design/components";
 import DashTable from '../DashTable/DashTable';
 

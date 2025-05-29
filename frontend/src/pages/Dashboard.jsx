@@ -5,7 +5,7 @@ import html2canvas from 'html2canvas'
 import { Download } from 'lucide-react';
 
 //components
-import Alerts from "../components/Alerts/alerts";
+import Alerts from "../components/Alerts/Alerts";
 import StudyStatus from "../components/PieChart/PieChart";
 import EnrollmentRisk from "../components/BarChart/BarChart";
 import TrialInit from "../components/LineChart/LineChart";
