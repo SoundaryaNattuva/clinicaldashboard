@@ -8,7 +8,7 @@ import { I18nProvider } from '@cloudscape-design/components/i18n';
 import messages from '@cloudscape-design/components/i18n/messages/all.en';
 
 //logo 
-import logo from './assets/bms-logo.png'
+import logo from './assets/cd-logo.png'
 
 //pages
 import AllStudies from './pages/AllStudies.jsx';

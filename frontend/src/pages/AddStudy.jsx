@@ -1,5 +1,4 @@
-import * as React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Form, SpaceBetween, Button, Container, Header, FormField, Input, Select, DatePicker, Flashbar, Box } from "@cloudscape-design/components";
 
 
@@ -34,7 +33,12 @@ function AddStudy(){
     }
     
     if (new Date(formValues.startDate) > new Date(formValues.plannedEndDate)) {
-      alert("Start date must be before the planned end date.");
+      setAlert({
+        type: "error",
+        content: "Start date must be before the planned end date.",
+        dismissible: true,
+        id: "date-validation-error"
+      });
       return;
     }
 
@@ -46,7 +50,7 @@ function AddStudy(){
         currentEnrollment: Number(formValues.currentEnrollment),
       };
 
-      const response = await fetch("https://9fvzur3xx3.execute-api.us-east-1.amazonaws.com/Stage/studies", {
+      const response = await fetch("http://localhost:8000/studies", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -219,5 +223,6 @@ function AddStudy(){
     </div>
   );
 }
+
 
 export default AddStudy
