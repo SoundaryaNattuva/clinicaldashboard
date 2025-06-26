@@ -1,6 +1,6 @@
 # Clinical Studies Dashboard
 
-<img align="left" width="400" height="400" src="https://i.imgur.com/0zg1Fgg.png">
+<img align="left" src="https://i.imgur.com/0zg1Fgg.png">
 <br>
 Welcome to the Clinical Studies Dashboard – a full-stack platform designed to simplify how research teams manage and analyze clinical trial data. 🧬 Whether you're uploading study files, adding studies manually, or reviewing real-time metrics, this tool puts actionable insights at your fingertips. Designed with researchers and data managers in mind, this dashboard streamlines data intake and transforms it into interactive visuals that inform decision-making and study oversight.
 
