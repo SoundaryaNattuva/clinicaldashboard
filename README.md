@@ -27,10 +27,7 @@ Welcome to the Clinical Studies Dashboard – a full-stack platform designed to 
 ---
 
 ## 🧊 Icebox Features
-- [ ] Add user authentication and role-based access control
-- [ ] Enable export of filtered study data as CSV/Excel
 - [ ] Add automated reminders for upcoming end dates
-- [ ] Incorporate AI-based suggestions for enrollment optimization
 
 ---
 
