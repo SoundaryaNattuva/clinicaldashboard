@@ -1,21 +1,28 @@
 # Clinical Studies Dashboard
 
-<img align="left" width="400" height="400" src="https://i.imgur.com/L3zNmfz.png">
+<img align="left" width="400" height="400" src="https://imgur.com/0zg1Fgg">
 <br>
 Welcome to the Clinical Studies Dashboard – a full-stack platform designed to simplify how research teams manage and analyze clinical trial data. 🧬 Whether you're uploading study files, adding studies manually, or reviewing real-time metrics, this tool puts actionable insights at your fingertips. Designed with researchers and data managers in mind, this dashboard streamlines data intake and transforms it into interactive visuals that inform decision-making and study oversight.
 
 ---
 
-# [Launch the Dashboard 🩺](https://your-deployment-link.com)
+## 📊 Study Management
+![Image](https://i.imgur.com/gXFWbl4.png)
 
-## 📊 Study Overview
-![Image](https://i.imgur.com/9Gf6LeR.png)
+## ⚠️ Enrollment Risks
+![Image](https://i.imgur.com/5KrOVb5.png)
 
-## 📁 Uploading Study Data
-![Image](https://i.imgur.com/1iJeNsM.png)
+## 📁 Chart #1
+![Image](https://i.imgur.com/6zOoowi.png)
 
-## 📈 Visualizing Study Metrics
-![Image](https://i.imgur.com/XgAJb1V.png)
+## 📈 Charts #2 and #3
+![Image](https://i.imgur.com/iQhkSpm.png)
+
+## 📈 Upload Studies via file upload
+![Image](https://i.imgur.com/Gk0pLVM.png)
+
+## 📈 Add Study
+![Image](https://i.imgur.com/YbbgCAO.png)
 
 ---
 
@@ -27,9 +34,9 @@ Welcome to the Clinical Studies Dashboard – a full-stack platform designed to 
 
 ---
 
-## 🧠 Entity Relational Diagram (ERD)
-![Image](https://i.imgur.com/U5sjlAY.png)
-# [Visit my ERD ✨](https://whimsical.com/jobtracker-3uz6gVntBdN89Kkx3KbJEn)
+## User Screens
+![Image](https://i.imgur.com/2hUPgxE.png)
+# [View Screens ✨](https://whimsical.com/bms-DReH9YFer34PcJPkTagEtP)
 
 ---
 
@@ -43,9 +50,7 @@ Welcome to the Clinical Studies Dashboard – a full-stack platform designed to 
 
 ## 🛟 Attributions
 - [Canva - Logo and Design Elements](https://www.canva.com/)
-- [Google Fonts](https://fonts.google.com/)
-- [Font Awesome](https://fontawesome.com/)
-- [Icons8 - Icons](https://icons8.com/icon/set/create/group-ui)
+- [Lucide - Icons](https://lucide.dev/guide/packages/lucide-react)
 - [Coolors - Color Palettes](https://coolors.co/palettes/trending)
 
 ---
