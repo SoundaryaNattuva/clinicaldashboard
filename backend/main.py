@@ -1,4 +1,4 @@
-from fastapi import FastAPI, File, UploadFile, HTTPException, Depends, APIRouter, Query
+from fastapi import FastAPI, File, UploadFile, Request, HTTPException, Depends, APIRouter, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from sqlalchemy import Column, Integer, String, Date, create_engine
@@ -6,6 +6,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 import pandas as pd
 import io
+import os
+import base64
 from io import BytesIO
 from datetime import datetime, date
 from pydantic import BaseModel
@@ -15,6 +17,7 @@ from mangum import Mangum
 
 app = FastAPI()
 router = APIRouter()
+handler = Mangum(app)
 
 # Allow frontend requests
 app.add_middleware(
@@ -26,8 +29,8 @@ app.add_middleware(
 )
 
 # SQLite setup
-DATABASE_URL = "sqlite:///./studies.db"
-engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./studies.db")
+engine = create_engine(DATABASE_URL)
 Base = declarative_base()
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 
@@ -43,8 +46,6 @@ class Study(Base):
     currentEnrollment = Column(Integer)
     startDate = Column(Date)
     plannedEndDate = Column(Date)
-
-Base.metadata.create_all(bind=engine)
 
 # Pydantic Model for upate
 class StudyUpdate(BaseModel):
@@ -70,6 +71,8 @@ class StudySchema(BaseModel):
 
     class Config:
         orm_mode = True
+
+Base.metadata.create_all(bind=engine)
 
 # Dependency
 def get_db():
@@ -176,17 +179,36 @@ def delete_study(study_id: str, db: Session = Depends(get_db)):
 
 #POST - Take xl data and POST to DB
 @app.post("/upload-excel/")
-async def upload_excel(file: UploadFile = File(...),db: Session = Depends(get_db)):
+async def upload_excel(file: Request,db: Session = Depends(get_db)):
+    
+    # # 1. Check for incorrect file type - works!
+    # if not file.filename.endswith((".xlsx", ".xls")):
+    #     raise HTTPException(
+    #         detail="Invalid file type. Please upload an Excel file (.xlsx or .xls)."
+    #     )
+    content_type = file.headers.get("content-type", "")
+    
+    if not content_type.startswith("multipart/form-data"):
+        raise HTTPException(status_code=400, detail="Invalid content-type for file upload")
 
-    # 1. Check for incorrect file type - works!
-    if not file.filename.endswith((".xlsx", ".xls")):
-        raise HTTPException(
-            status_code=400,
-            detail="Invalid file type. Please upload an Excel file (.xlsx or .xls)."
-        )
+    try:
+        # Decode base64-encoded request body (required for API Gateway)
+        body = await file.body()
+        decoded_body = base64.b64decode(body)
 
-    contents = await file.read()
-    df = pd.read_excel(io.BytesIO(contents))
+        # Validate file is an XLSX: look for ZIP header (XLSX = zipped XML)
+        if not decoded_body.startswith(b'\x50\x4B\x03\x04'):
+            raise HTTPException(status_code=400, detail="Only .xlsx files are supported.")
+
+        # Parse Excel using openpyxl engine
+        df = pd.read_excel(io.BytesIO(decoded_body), engine="openpyxl")
+
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Failed to read Excel file: {str(e)}")
+
+    # contents = await file.read()
+    # contents = base64.b64decode(contents)
+    # df = pd.read_excel(io.BytesIO(contents))
 
     required_columns = [
         "studyId", "title", "phase", "status",
